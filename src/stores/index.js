@@ -211,6 +211,60 @@ function setPosts() {
     });
   };
 
+  const likePost = async (postId) => {
+    const access_token = get(auth).Authorization;
+
+    try {
+      const options = {
+        path: `/likes/add/${postId}`,
+        access_token: access_token,
+      };
+
+      await postApi(options);
+
+      update((datas) => {
+        const newPosts = datas.postList.map((post) => {
+          if (post.id === postId) {
+            post.likeCount = post.likeCount + 1;
+            post.likeMe = true;
+          }
+          return post;
+        });
+        datas.postList = newPosts;
+        return datas;
+      });
+    } catch (error) {
+      alert("오류가 발생했습니다. 다시 시도해 주세요.");
+    }
+  };
+
+  const cancelLikePost = async (postId) => {
+    const access_token = get(auth).Authorization;
+
+    try {
+      const options = {
+        path: `/likes/cancel/${postId}`,
+        access_token: access_token,
+      };
+
+      await postApi(options);
+
+      update((datas) => {
+        const newPosts = datas.postList.map((post) => {
+          if (post.id === postId) {
+            post.likeCount = post.likeCount - 1;
+            post.likeMe = false;
+          }
+          return post;
+        });
+        datas.postList = newPosts;
+        return datas;
+      });
+    } catch (error) {
+      alert("오류가 발생했습니다. 다시 시도해 주세요.");
+    }
+  };
+
   return {
     subscribe,
     fetchPosts,
@@ -224,6 +278,8 @@ function setPosts() {
     deletePost,
     increPostCommentCount,
     decrePostCommentCount,
+    likePost,
+    cancelLikePost,
   };
 }
 
