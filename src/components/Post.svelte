@@ -2,6 +2,7 @@
   export let post;
   import { posts, auth } from "../stores";
   import PostEditForm from "./PostEditForm.svelte";
+  import { router } from "tinro";
 
   let isViewMenu = false;
 
@@ -29,6 +30,10 @@
     if (confirm("삭제 하시겠습니까?")) {
       posts.deletePost(id);
     }
+  };
+
+  const goComment = (id) => {
+    router.goto(`/posts/comments/${id}`);
   };
 </script>
 
@@ -103,7 +108,7 @@
         </button> -->
       </div>
       <div class="button-box-inner-right">
-        <button class="flex">
+        <button class="flex" on:click={() => goComment(post.id)}>
           <p class="text-base">{post.commentCount}</p>
           <svg
             xmlns="http://www.w3.org/2000/svg"

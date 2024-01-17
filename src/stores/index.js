@@ -183,6 +183,34 @@ function setPosts() {
     }
   };
 
+  const increPostCommentCount = (postId) => {
+    update((datas) => {
+      const newPostList = datas.postList.map((post) => {
+        if (post.id === postId) {
+          post.commentCount = post.commentCount + 1;
+        }
+        return post;
+      });
+
+      datas.postList = newPostList;
+      return datas;
+    });
+  };
+
+  const decrePostCommentCount = (postId) => {
+    update((datas) => {
+      const newPostList = datas.postList.map((post) => {
+        if (post.id === postId) {
+          post.commentCount = post.commentCount - 1;
+        }
+        return post;
+      });
+
+      datas.postList = newPostList;
+      return datas;
+    });
+  };
+
   return {
     subscribe,
     fetchPosts,
@@ -194,6 +222,8 @@ function setPosts() {
     closeEditModePost,
     updatePost,
     deletePost,
+    increPostCommentCount,
+    decrePostCommentCount,
   };
 }
 
@@ -217,8 +247,108 @@ function setLoadingPost() {
   };
 }
 
-function setPostContent() {}
-function setComments() {}
+function setPostContent() {
+  let initValues = {
+    id: "",
+    userId: "",
+    userEmail: "",
+    content: "",
+    createdAt: "",
+    commentCount: 0,
+    likeCount: 0,
+    likeUsers: [],
+  };
+
+  const { subscribe, set } = writable({ ...initValues });
+
+  const getPost = async (id) => {
+    const access_token = get(auth).Authorization;
+    try {
+      const options = {
+        path: `/posts/${id}`,
+        access_token: access_token,
+      };
+
+      const getData = await getApi(options);
+      set(getData);
+    } catch (error) {
+      alert("오류가 발생했습니다. 다시 시도해 주세요.");
+    }
+  };
+
+  return {
+    subscribe,
+    getPost,
+  };
+}
+
+function setComments() {
+  const { subscribe, update, set } = writable([]);
+
+  const fetchComments = async (id) => {
+    const access_token = get(auth).Authorization;
+    try {
+      const options = {
+        path: `/comments/${id}`,
+        access_token: access_token,
+      };
+
+      const getDatas = await getApi(options);
+      set(getDatas.comments);
+    } catch (error) {
+      alert("오류가 발생했습니다. 다시 시도해 주세요.");
+    }
+  };
+  const addComment = async (postId, commentContent) => {
+    const access_token = get(auth).Authorization;
+
+    try {
+      const options = {
+        path: "/comments",
+        data: {
+          postId: postId,
+          content: commentContent,
+        },
+        access_token: access_token,
+      };
+
+      const newData = await postApi(options);
+      update((datas) => [...datas, newData]);
+      posts.increPostCommentCount(postId);
+    } catch (error) {
+      alert("오류가 발생했습니다. 다시 시도해 주세요.");
+    }
+  };
+
+  const deleteComment = async (commentId, postId) => {
+    const access_token = get(auth).Authorization;
+
+    try {
+      const options = {
+        path: "/comments",
+        data: {
+          commentId: commentId,
+          postId: postId,
+        },
+        access_token: access_token,
+      };
+
+      await delApi(options);
+      update((datas) => datas.filter((comment) => comment.id !== commentId));
+      posts.decrePostCommentCount(postId);
+      alert("코멘트가 삭제 되었습니다.");
+    } catch (error) {
+      alert("삭제 중 오류가 발생했습니다. 다시 시도해 주세요.");
+    }
+  };
+
+  return {
+    subscribe,
+    fetchComments,
+    addComment,
+    deleteComment,
+  };
+}
 
 function setAuth() {
   let initValues = {
@@ -318,7 +448,7 @@ export const currentPostsPage = setCurrentPostsPage();
 export const posts = setPosts();
 export const postPageLock = writable(false);
 export const loadingPost = setLoadingPost();
-export const postConetent = setPostContent();
+export const postContent = setPostContent();
 export const comments = setComments();
 export const auth = setAuth();
 export const postsMode = setPostsMode();

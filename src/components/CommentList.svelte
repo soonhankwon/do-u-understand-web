@@ -1,5 +1,28 @@
 <script>
   import Comment from "./Comment.svelte";
+
+  import { onMount } from "svelte";
+  import { router, meta } from "tinro";
+  import { postContent, comments, isLogin } from "../stores";
+
+  const route = meta();
+  const postId = Number(route.params.id);
+
+  let values = {
+    formContent: "",
+  };
+
+  onMount(() => {
+    postContent.getPost(postId);
+    comments.fetchComments(postId);
+  });
+
+  const goPosts = () => router.goto(`/posts`);
+
+  const onAddComment = async () => {
+    await comments.addComment(postId, values.formContent);
+    values.formContent = "";
+  };
 </script>
 
 <!-- do-u-understand-comment-wrap start-->
@@ -8,28 +31,24 @@
   <div class="do-u-understand-comment-box">
     <div class="comment-box-header">
       <div class="content-box-header-inner-left">
-        <p class="p-user">freeseamew</p>
-        <p class="p-date">2022-11-11</p>
+        <p class="p-user">{$postContent.userEmail}</p>
+        <p class="p-date">{$postContent.createdAt}</p>
       </div>
     </div>
 
     <div class="comment-box-main">
-      <p class="whitespace-pre-line">
-        Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat
-        eu. Nostrud in laboris labore nisi amet do dolor eu fugiat consectetur
-        elit cillum esse. Pariatur occaecat nisi laboris tempor laboris eiusmod
-        qui id Lorem esse commodo in. Exercitation aute dolore deserunt culpa
-        consequat elit labore incididunt elit anim.
-      </p>
+      <p class="whitespace-pre-line">{$postContent.content}</p>
       <div class="inner-button-box">
-        <button class="button-base">글 목록 보기</button>
+        <button class="button-base" on:click={goPosts}>글 목록 보기</button>
       </div>
     </div>
 
     <div class="commnet-list-box">
       <h1 class="comment-title">Comments</h1>
       <ul class="my-5">
-        <Comment />
+        {#each $comments as comment, index}
+          <Comment {comment} {postId} />
+        {/each}
       </ul>
     </div>
 
@@ -39,9 +58,10 @@
         rows="5"
         class="do-u-understand-content-textarea"
         placeholder="내용을 입력해 주세요."
+        bind:value={values.formContent}
       ></textarea>
       <div class="button-box-full">
-        <button class="button-base">입력</button>
+        <button class="button-base" on:click={onAddComment}>입력</button>
       </div>
     </div>
   </div>
