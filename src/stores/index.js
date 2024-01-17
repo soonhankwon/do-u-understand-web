@@ -72,10 +72,36 @@ function setPosts() {
     postPageLock.set(false);
   };
 
+  const addPost = async (title, content, link) => {
+    const access_token = get(auth).Authorization;
+    try {
+      const options = {
+        path: "/posts",
+        data: {
+          title: title,
+          content: content,
+          link: link,
+        },
+        access_token: access_token,
+      };
+
+      const newPost = await postApi(options);
+
+      update((datas) => {
+        datas.postList = [newPost, ...datas.postList];
+        return datas;
+      });
+      return;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return {
     subscribe,
     fetchPosts,
     resetPosts,
+    addPost,
   };
 }
 
