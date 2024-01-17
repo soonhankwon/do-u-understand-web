@@ -72,7 +72,12 @@ function setPosts() {
           datas.totalPageCount = newData.totalPageCount;
         } else {
           const newPosts = [...datas.postList, ...newData.postList];
-          datas.postList = newPosts;
+          //   datas.postList = newPosts;
+          const uniqueArr = newPosts.filter(
+            (arr, index, callback) =>
+              index === callback.findIndex((t) => t.id === arr.id)
+          );
+          datas.postList = uniqueArr;
           datas.totalPageCount = newData.totalPageCount;
         }
         return datas;
