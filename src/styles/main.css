@@ -563,7 +563,7 @@ html {
   flex-direction: column;
 }
 
-.slog-main {
+.do-u-understand-main {
   /* @apply lg:max-w-4xl mx-5 lg:mx-auto flex flex-col */
   height: 100vh;
   overflow-y: auto;
@@ -621,9 +621,9 @@ html {
   padding-right: 1.25rem;
 }
 
-/* slog-content */
+/* do-u-understand-content */
 
-.slog-content-box {
+.do-u-understand-content-box {
   margin-left: 1.25rem;
   margin-right: 1.25rem;
   flex-direction: column;
@@ -642,14 +642,14 @@ html {
 }
 
 @media (min-width: 1024px) {
-  .slog-content-box {
+  .do-u-understand-content-box {
     margin-left: auto;
     margin-right: auto;
     max-width: 56rem;
   }
 }
 
-.slog-add-content-box {
+.do-u-understand-add-content-box {
   margin-left: 1.25rem;
   margin-right: 1.25rem;
   margin-top: 1.25rem;
@@ -669,7 +669,7 @@ html {
 }
 
 @media (min-width: 1024px) {
-  .slog-add-content-box {
+  .do-u-understand-add-content-box {
     margin-left: auto;
     margin-right: auto;
     max-width: 56rem;
@@ -698,7 +698,7 @@ html {
   justify-content: flex-end;
 }
 
-.slog-content-textarea {
+.do-u-understand-content-textarea {
   display: block;
   width: 100%;
   border-radius: 0.125rem;
@@ -714,7 +714,7 @@ html {
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
-.slog-content-textarea:focus {
+.do-u-understand-content-textarea:focus {
   --tw-border-opacity: 1;
   border-color: rgb(59 130 246 / var(--tw-border-opacity));
   --tw-ring-opacity: 1;
@@ -750,14 +750,14 @@ html {
   justify-content: flex-end;
 }
 
-.slog-ul {
+.do-u-understand-ul {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
 }
 
-/* slog-comment */
+/* do-u-understand-comment */
 
-.slog-comment-wrap {
+.do-u-understand-comment-wrap {
   /* @apply fixed pt-14 top-0 left-0 z-10 h-screen w-screen overflow-y-auto bg-gray-100 */
   position: fixed;
   top: 3.5rem;
@@ -770,7 +770,7 @@ html {
   background-color: rgb(243 244 246 / var(--tw-bg-opacity))
 }
 
-.slog-comment-box {
+.do-u-understand-comment-box {
   /* @apply flex-col lg:max-w-4xl mx-5 lg:mx-auto justify-between bg-white shadow-md border border-x-gray-200 border-t-gray-200 border-b-gray-400      */
   margin-left: 1.25rem;
   margin-right: 1.25rem;
@@ -792,7 +792,7 @@ html {
 }
 
 @media (min-width: 1024px) {
-  .slog-comment-box {
+  .do-u-understand-comment-box {
     margin-left: auto;
     margin-right: auto;
     max-width: 56rem;
@@ -1091,7 +1091,7 @@ html {
   font-weight: 700;
 }
 
-.article-loading-box {
+.post-loading-box {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
   display: flex;
@@ -1099,14 +1099,14 @@ html {
 }
 
 @media (min-width: 1024px) {
-  .article-loading-box {
+  .post-loading-box {
     margin-left: auto;
     margin-right: auto;
     max-width: 56rem;
   }
 }
 
-.article-loading-item {
+.post-loading-item {
   margin-right: 0.5rem;
   height: 2rem;
   width: 2rem;
@@ -1124,7 +1124,7 @@ html {
   }
 }
 
-.article-loading-item {
+.post-loading-item {
   -webkit-animation: spin 1s linear infinite;
           animation: spin 1s linear infinite;
   fill: #2563eb;

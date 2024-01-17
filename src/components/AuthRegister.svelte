@@ -15,7 +15,7 @@
       <input
         type="password"
         name="floating_email"
-        id="floating_email"
+        id="floating_password"
         class="auth-input-text peer"
         placeholder=" "
       />
@@ -25,7 +25,7 @@
       <input
         type="password"
         name="floating_email"
-        id="floating_email"
+        id="floating_password_confirm"
         class="auth-input-text peer"
         placeholder=" "
       />
