@@ -5,16 +5,20 @@
     currentPostsPage,
     loadingPost,
     postPageLock,
+    postsMode,
   } from "../stores";
   import Post from "./Post.svelte";
   import PostLoading from "./PostLoading.svelte";
+  import { router } from "tinro";
 
   let component;
   let element;
+  let currentMode = $router.path.split("/")[2];
 
   onMount(() => {
-    posts.resetPosts();
-    posts.fetchPosts();
+    // posts.resetPosts();
+    // posts.fetchPosts();
+    postsMode.changeMode(currentMode);
   });
 
   $: {

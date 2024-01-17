@@ -7,7 +7,8 @@
   const onLogout = () => auth.logout();
 
   const onChangeMode = (mode) => {
-    if ($postsMode !== mode) postsMode.changeMode(mode);
+    // if ($postsMode !== mode) postsMode.changeMode(mode);
+    if ($postsMode !== mode) router.goto(`/posts/${mode}`);
   };
 </script>
 

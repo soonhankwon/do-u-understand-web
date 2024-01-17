@@ -464,7 +464,7 @@ function setAuth() {
       const result = await postApi(options);
       set(result);
       isRefresh.set(true);
-      router.goto("/posts");
+      router.goto("/posts/all");
     } catch (error) {
       alert("오류가 발생했습니다. 로그인을 다시 시도해 주세요.");
     }

@@ -11,6 +11,7 @@
 
   const route = meta();
   const postId = Number(route.params.id);
+  const currentMode = $router.path.split("/")[2];
 
   let values = {
     formContent: "",
@@ -21,7 +22,8 @@
     comments.fetchComments(postId);
   });
 
-  const goPosts = () => router.goto(`/posts`);
+  //   const goPosts = () => router.goto(`/posts`);
+  const goPosts = () => router.goto(`/posts/${currentMode}`);
 
   const onAddComment = async () => {
     try {
