@@ -2,9 +2,103 @@ import { writable, get, derived } from "svelte/store";
 import { getApi, putApi, delApi, postApi } from "../service/api";
 import { router } from "tinro";
 
-function setCurrentPostsPage() {}
-function setPosts() {}
-function setLoadingPost() {}
+function setCurrentPostsPage() {
+  const { subscribe, update, set } = writable(0);
+
+  const resetPage = () => set(0);
+  const increPage = () => {
+    update((data) => (data = data + 1));
+    posts.fetchPosts();
+  };
+
+  return {
+    subscribe,
+    resetPage,
+    increPage,
+  };
+}
+
+function setPosts() {
+  let initValues = {
+    postList: [],
+    totalPageCount: 0,
+    menuPopup: "",
+    editMode: "",
+  };
+
+  const { subscribe, update, set } = writable({ ...initValues });
+
+  const fetchPosts = async () => {
+    loadingPost.turnOnLoading();
+    const currentPage = get(currentPostsPage);
+    let path = `/posts?pageNumber=${currentPage}`;
+
+    try {
+      const access_token = get(auth).Authorization;
+
+      const options = {
+        path: path,
+        access_token: access_token,
+      };
+
+      const getDatas = await getApi(options);
+
+      const newData = {
+        postList: getDatas.postList,
+        totalPageCount: getDatas.totalPageCount,
+      };
+
+      update((datas) => {
+        if (currentPage === 0) {
+          datas.postList = newData.postList;
+          datas.totalPageCount = newData.totalPageCount;
+        } else {
+          const newPosts = [...datas.postList, ...newData.postList];
+          datas.postList = newPosts;
+          datas.totalPageCount = newData.totalPageCount;
+        }
+        return datas;
+      });
+      loadingPost.turnOffLoading();
+    } catch (error) {
+      loadingPost.turnOffLoading();
+      throw error;
+    }
+  };
+
+  const resetPosts = () => {
+    set({ ...initValues });
+    currentPostsPage.resetPage();
+    postPageLock.set(false);
+  };
+
+  return {
+    subscribe,
+    fetchPosts,
+    resetPosts,
+  };
+}
+
+function setLoadingPost() {
+  const { subscribe, set } = writable(false);
+
+  const turnOnLoading = () => {
+    set(true);
+    postPageLock.set(true);
+  };
+
+  const turnOffLoading = () => {
+    set(false);
+    postPageLock.set(false);
+  };
+
+  return {
+    subscribe,
+    turnOnLoading,
+    turnOffLoading,
+  };
+}
+
 function setPostContent() {}
 function setComments() {}
 
@@ -104,6 +198,7 @@ function setIsLogin() {
 
 export const currentPostsPage = setCurrentPostsPage();
 export const posts = setPosts();
+export const postPageLock = writable(false);
 export const loadingPost = setLoadingPost();
 export const postConetent = setPostContent();
 export const comments = setComments();
