@@ -97,11 +97,103 @@ function setPosts() {
     }
   };
 
+  const openMenuPopup = (id) => {
+    update((datas) => {
+      datas.menuPopup = id;
+      return datas;
+    });
+  };
+
+  const closeMenuPopup = (id) => {
+    update((datas) => {
+      datas.menuPopup = "";
+      return datas;
+    });
+  };
+
+  const openEditModePost = (id) => {
+    posts.closeMenuPopup();
+
+    update((datas) => {
+      datas.editMode = id;
+      return datas;
+    });
+  };
+
+  const closeEditModePost = () => {
+    update((datas) => {
+      datas.editMode = "";
+      return datas;
+    });
+  };
+
+  const updatePost = async (post) => {
+    const access_token = get(auth).Authorization;
+    try {
+      const updateData = {
+        title: post.content,
+        content: post.content,
+        link: post.content,
+      };
+
+      const options = {
+        path: `/posts/${post.id}`,
+        data: updateData,
+        access_token: access_token,
+      };
+
+      const updatePost = await putApi(options);
+
+      update((datas) => {
+        const newPostList = datas.postList.map((post) => {
+          if (post.id === updatePost.id) {
+            post = updatePost;
+          }
+          return post;
+        });
+        datas.postList = newPostList;
+        return datas;
+      });
+
+      posts.closeEditModePost();
+      alert("수정이 완료되었습니다.");
+    } catch (error) {
+      alert("수정중에 오류가 발생했습니다. 다시 시도해 주세요.");
+    }
+  };
+
+  const deletePost = async (id) => {
+    const access_token = get(auth).Authorization;
+
+    try {
+      const options = {
+        path: `/posts/${id}`,
+        access_token: access_token,
+      };
+
+      await delApi(options);
+
+      update((datas) => {
+        const newPostList = datas.postList.filter((post) => post.id !== id);
+        datas.postList = newPostList;
+        return datas;
+      });
+    } catch (error) {
+      alert("삭제 중 오류가 발생했습니다.");
+    }
+  };
+
   return {
     subscribe,
     fetchPosts,
     resetPosts,
     addPost,
+    openMenuPopup,
+    closeMenuPopup,
+    openEditModePost,
+    closeEditModePost,
+    updatePost,
+    deletePost,
   };
 }
 

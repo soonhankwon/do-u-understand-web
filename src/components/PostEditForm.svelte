@@ -1,9 +1,29 @@
+<script>
+  export let post;
+  import { posts } from "../stores";
+
+  let postValue = {
+    id: post.id,
+    userEmail: post.userEmail,
+    createdAt: post.createdAt,
+    content: post.content,
+  };
+
+  const onCloseEditModePost = () => {
+    posts.closeEditModePost();
+  };
+
+  const onUpdatePost = () => {
+    posts.updatePost(postValue);
+  };
+</script>
+
 <!-- do-u-understand-content-edit-form start-->
 <div class="do-u-understand-content-box">
   <div class="content-box-header">
     <div class="content-box-header-inner-left">
-      <p class="p-user">freeseamew</p>
-      <p class="p-date">2022-11-11</p>
+      <p class="p-user">{postValue.userEmail}</p>
+      <p class="p-date">{postValue.createdAt}</p>
     </div>
   </div>
 
@@ -13,13 +33,14 @@
       rows="5"
       class="do-u-understand-content-textarea"
       placeholder="내용을 입력해 주세요."
+      bind:value={postValue.content}
     ></textarea>
   </div>
 
   <div class="content-box-bottom">
     <div class="button-box">
-      <button class="button-base">완료</button>
-      <button class="button-base">취소</button>
+      <button class="button-base" on:click={onUpdatePost}>완료</button>
+      <button class="button-base" on:click={onCloseEditModePost}>취소</button>
     </div>
   </div>
 </div>
