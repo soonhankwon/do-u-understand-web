@@ -5,6 +5,7 @@
   import { router, meta } from "tinro";
   import { postContent, comments, isLogin } from "../stores";
   import { extractErrors, contentValidate } from "../utils/validates";
+  import dateView from "../utils/date";
 
   let errors = {};
 
@@ -41,7 +42,7 @@
     <div class="comment-box-header">
       <div class="content-box-header-inner-left">
         <p class="p-user">{$postContent.userEmail}</p>
-        <p class="p-date">{$postContent.createdAt}</p>
+        <p class="p-date">{dateView($postContent.createdAt)}</p>
       </div>
     </div>
 

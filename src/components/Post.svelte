@@ -3,6 +3,7 @@
   import { posts, auth, isLogin } from "../stores";
   import PostEditForm from "./PostEditForm.svelte";
   import { router } from "tinro";
+  import dateView from "../utils/date";
 
   let isViewMenu = false;
 
@@ -57,7 +58,7 @@
     <div class="content-box-header">
       <div class="content-box-header-inner-left">
         <p class="p-user">{post.userEmail}</p>
-        <p class="p-date">{post.createdAt}</p>
+        <p class="p-date">{dateView(post.createdAt)}</p>
       </div>
       <div class="content-box-header-inner-right">
         {#if post.userId === $auth.id}
