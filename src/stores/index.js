@@ -1,6 +1,7 @@
 import { writable, get, derived } from "svelte/store";
 import { getApi, putApi, delApi, postApi } from "../service/api";
 import { router } from "tinro";
+import { ALL, LIKE, MY } from "../utils/constant";
 
 function setCurrentPostsPage() {
   const { subscribe, update, set } = writable(0);
@@ -31,7 +32,24 @@ function setPosts() {
   const fetchPosts = async () => {
     loadingPost.turnOnLoading();
     const currentPage = get(currentPostsPage);
-    let path = `/posts?pageNumber=${currentPage}`;
+    // let path = `/posts?pageNumber=${currentPage}`;
+    let path = "";
+    const mode = get(postsMode);
+
+    switch (mode) {
+      case ALL:
+        path = `/posts?pageNumber=${currentPage}`;
+        break;
+      case LIKE:
+        path = `/likes?pageNumber=${currentPage}`;
+        break;
+      case MY:
+        path = `/posts?pageNumber=${currentPage}&mode=${mode}`;
+        break;
+      default:
+        path = `/posts/${currentPage}`;
+        break;
+    }
 
     try {
       const access_token = get(auth).Authorization;
@@ -455,7 +473,8 @@ function setAuth() {
       await delApi(options);
       set({ ...initValues });
       isRefresh.set(false);
-      router.goto("/");
+      //   router.goto("/");
+      postsMode.changeMode(ALL);
     } catch (error) {
       alert("오류가 발생했습니다. 다시 시도해 주세요.");
     }
@@ -491,7 +510,20 @@ function setAuth() {
   };
 }
 
-function setPostsMode() {}
+function setPostsMode() {
+  const { subscribe, update, set } = writable(ALL);
+
+  const changeMode = async (mode) => {
+    set(mode);
+    posts.resetPosts();
+    await posts.fetchPosts();
+  };
+
+  return {
+    subscribe,
+    changeMode,
+  };
+}
 
 function setIsLogin() {
   const checkLogin = derived(auth, ($auth) =>
