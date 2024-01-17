@@ -1,4 +1,4 @@
-import { writable, get } from "svelte/store";
+import { writable, get, derived } from "svelte/store";
 import { getApi, putApi, delApi, postApi } from "../service/api";
 import { router } from "tinro";
 
@@ -42,7 +42,7 @@ function setAuth() {
 
       const result = await postApi(options);
       set(result);
-      isRefresh(true);
+      isRefresh.set(true);
       router.goto("/posts");
     } catch (error) {
       alert("오류가 발생했습니다. 로그인을 다시 시도해 주세요.");
@@ -70,6 +70,7 @@ function setAuth() {
         data: {
           email: email,
           password: password,
+          code: "1",
           isAllowedNotification: false,
         },
       };
@@ -93,7 +94,13 @@ function setAuth() {
 }
 
 function setPostsMode() {}
-function setIsLogin() {}
+
+function setIsLogin() {
+  const checkLogin = derived(auth, ($auth) =>
+    $auth.Authorization ? true : false
+  );
+  return checkLogin;
+}
 
 export const currentPostsPage = setCurrentPostsPage();
 export const posts = setPosts();
