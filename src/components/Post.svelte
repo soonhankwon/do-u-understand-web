@@ -98,7 +98,15 @@
     </div>
 
     <div class="content-box-main">
+      <p class="whitespace-pre-line">{post.title}</p>
+    </div>
+    <div class="content-box-main">
       <p class="whitespace-pre-line">{post.content}</p>
+    </div>
+    <div class="content-box-main-link">
+      <p class="whitespace-pre-line">
+        <a href={post.link} target="_blank">{post.link}</a>
+      </p>
     </div>
 
     <div class="content-box-bottom">

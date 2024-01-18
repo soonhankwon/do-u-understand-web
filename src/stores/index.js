@@ -38,7 +38,7 @@ function setPosts() {
 
     switch (mode) {
       case ALL:
-        path = `/posts?pageNumber=${currentPage}`;
+        path = `/posts?pageNumber=${currentPage}&mode=${mode}`;
         break;
       case LIKE:
         path = `/likes?pageNumber=${currentPage}`;

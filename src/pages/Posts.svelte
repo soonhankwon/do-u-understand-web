@@ -2,14 +2,15 @@
   import PostHeader from "../components/PostHeader.svelte";
   import PostList from "../components/PostList.svelte";
   import PostAddForm from "../components/PostAddForm.svelte";
-  import { isLogin } from "../stores";
+  import { isLogin, postsMode } from "../stores";
   import Comments from "./Comments.svelte";
   import { Route } from "tinro";
+  import { ALL } from "../utils/constant";
 </script>
 
 <PostHeader />
 <main class="do-u-understand-main">
-  {#if $isLogin}
+  {#if $isLogin && $postsMode !== ALL}
     <PostAddForm />
   {/if}
   <PostList />

@@ -50,4 +50,8 @@ const delApi = ({ path = "", data = {}, access_token = "" } = {}) => {
   return send({ method: "DELETE", path, data, access_token });
 };
 
-export { getApi, putApi, postApi, delApi };
+const patchApi = ({ path = "", data = {}, access_token = "" } = {}) => {
+  return send({ method: "PATCH", path, data, access_token });
+};
+
+export { getApi, putApi, postApi, delApi, patchApi };

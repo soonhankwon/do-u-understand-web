@@ -19,22 +19,22 @@
     <button
       class="main-menu mr-6"
       class:main-menu-selected={$postsMode === ALL}
-      on:click={() => onChangeMode(ALL)}>모두 보기</button
+      on:click={() => onChangeMode(ALL)}>NOTICE</button
     >
     {#if $isLogin}
       <button
         class="main-menu mr-6"
         class:main-menu-selected={$postsMode === LIKE}
-        on:click={() => onChangeMode(LIKE)}>좋아요 보기</button
+        on:click={() => onChangeMode(LIKE)}>SUBSCRIBE</button
       >
       <button
         class="main-menu"
         class:main-menu-selected={$postsMode === MY}
-        on:click={() => onChangeMode(MY)}>내글 보기</button
+        on:click={() => onChangeMode(MY)}>MY POST</button
       >
     {:else}
-      <button class="main-menu mr-6 main-menu-blocked">좋아요 보기</button>
-      <button class="main-menu main-menu-blocked">내글 보기</button>
+      <button class="main-menu mr-6 main-menu-blocked">SUBSCRIBE</button>
+      <button class="main-menu main-menu-blocked">MY POST</button>
     {/if}
   </nav>
 
