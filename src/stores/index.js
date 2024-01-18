@@ -485,6 +485,21 @@ function setAuth() {
     }
   };
 
+  const sendAuthEmail = async (email) => {
+    try {
+      const options = {
+        path: "/auth/email",
+        data: {
+          email: email,
+        },
+      };
+      const response = await postApi(options);
+      alert(email + "로 인증메일이 발송되었습니다.");
+    } catch (error) {
+      alert("오류가 발생했습니다. 다시 시도해주세요.");
+    }
+  };
+
   const register = async (email, password) => {
     try {
       const options = {
@@ -512,6 +527,7 @@ function setAuth() {
     logout,
     resetUserInfo,
     register,
+    sendAuthEmail,
   };
 }
 
