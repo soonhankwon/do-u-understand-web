@@ -248,8 +248,8 @@ function setPosts() {
       update((datas) => {
         const newPosts = datas.postList.map((post) => {
           if (post.id === postId) {
-            post.likeCount = post.likeCount + 1;
-            post.likeMe = true;
+            // post.likeCount = post.likeCount + 1;
+            post.subscribeMe = true;
           }
           return post;
         });
@@ -275,8 +275,8 @@ function setPosts() {
       update((datas) => {
         const newPosts = datas.postList.map((post) => {
           if (post.id === postId) {
-            post.likeCount = post.likeCount - 1;
-            post.likeMe = false;
+            // post.likeCount = post.likeCount - 1;
+            post.subscribeMe = false;
           }
           return post;
         });
