@@ -1,3 +1,3 @@
 export const ALL = "all";
-export const LIKE = "like";
+export const SUBSCRIBE = "subscribe";
 export const MY = "my";

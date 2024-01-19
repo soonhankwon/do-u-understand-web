@@ -1,7 +1,7 @@
 import { writable, get, derived } from "svelte/store";
 import { getApi, putApi, delApi, postApi } from "../service/api";
 import { router } from "tinro";
-import { ALL, LIKE, MY } from "../utils/constant";
+import { ALL, SUBSCRIBE, MY } from "../utils/constant";
 
 function setCurrentPostsPage() {
   const { subscribe, update, set } = writable(0);
@@ -40,8 +40,8 @@ function setPosts() {
       case ALL:
         path = `/posts?pageNumber=${currentPage}&mode=${mode}`;
         break;
-      case LIKE:
-        path = `/likes?pageNumber=${currentPage}`;
+      case SUBSCRIBE:
+        path = `/subscribe?pageNumber=${currentPage}`;
         break;
       case MY:
         path = `/posts?pageNumber=${currentPage}&mode=${mode}`;
@@ -234,12 +234,12 @@ function setPosts() {
     });
   };
 
-  const likePost = async (postId) => {
+  const subscribePost = async (postId) => {
     const access_token = get(auth).Authorization;
 
     try {
       const options = {
-        path: `/likes/add/${postId}`,
+        path: `/subscribe/${postId}`,
         access_token: access_token,
       };
 
@@ -261,16 +261,16 @@ function setPosts() {
     }
   };
 
-  const cancelLikePost = async (postId) => {
+  const cancelSubscribePost = async (postId) => {
     const access_token = get(auth).Authorization;
 
     try {
       const options = {
-        path: `/likes/cancel/${postId}`,
+        path: `/subscribe/${postId}`,
         access_token: access_token,
       };
 
-      await postApi(options);
+      await delApi(options);
 
       update((datas) => {
         const newPosts = datas.postList.map((post) => {
@@ -301,8 +301,8 @@ function setPosts() {
     deletePost,
     increPostCommentCount,
     decrePostCommentCount,
-    likePost,
-    cancelLikePost,
+    subscribePost,
+    cancelSubscribePost,
   };
 }
 

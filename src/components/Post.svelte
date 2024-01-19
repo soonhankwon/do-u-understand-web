@@ -40,15 +40,15 @@
     router.goto(`/posts/${currentMode}/comments/${id}`);
   };
 
-  const onLike = (id) => {
+  const onSubscribe = (id) => {
     if ($isLogin) {
-      posts.likePost(id);
+      posts.subscribePost(id);
     }
   };
 
-  const onCancelLike = (id) => {
+  const onCancelSubscribe = (id) => {
     if ($isLogin) {
-      posts.cancelLikePost(id);
+      posts.cancelSubscribePost(id);
     }
   };
 </script>
@@ -112,7 +112,7 @@
     <div class="content-box-bottom">
       <div class="button-box-inner-left">
         {#if post.likeMe}
-          <button class="flex" on:click={() => onCancelLike(post.id)}>
+          <button class="flex" on:click={() => onCancelSubscribe(post.id)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -125,7 +125,7 @@
             <p class="text-base">{post.likeCount}</p>
           </button>
         {:else}
-          <button class="flex" on:click={() => onLike(post.id)}>
+          <button class="flex" on:click={() => onSubscribe(post.id)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

@@ -14,10 +14,10 @@
   <Route path="/all/*"><Posts /></Route>
   {#if $isLogin}
     <Route path="/my/*"><Posts /></Route>
-    <Route path="/like/*"><Posts /></Route>
+    <Route path="/subscribe/*"><Posts /></Route>
   {:else}
     <Route path="/my/*" redirect="/posts/all" />
-    <Route path="/like/*" redirect="/posts/all"><Posts /></Route>
+    <Route path="/subscribe/*" redirect="/posts/all"><Posts /></Route>
   {/if}
 </Route>
 <Route path="/login"><Login /></Route>

@@ -1,7 +1,7 @@
 <script>
   import { router } from "tinro";
   import { auth, isLogin, postsMode } from "../stores";
-  import { ALL, LIKE, MY } from "../utils/constant";
+  import { ALL, SUBSCRIBE, MY } from "../utils/constant";
 
   const goLogin = () => router.goto("/login");
   const onLogout = () => auth.logout();
@@ -24,8 +24,8 @@
     {#if $isLogin}
       <button
         class="main-menu mr-6"
-        class:main-menu-selected={$postsMode === LIKE}
-        on:click={() => onChangeMode(LIKE)}>SUBSCRIBE</button
+        class:main-menu-selected={$postsMode === SUBSCRIBE}
+        on:click={() => onChangeMode(SUBSCRIBE)}>SUBSCRIBE</button
       >
       <button
         class="main-menu"
