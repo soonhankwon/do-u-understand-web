@@ -105,7 +105,7 @@
     </div>
     <div class="content-box-main-link">
       <p class="whitespace-pre-line">
-        <a href={post.link} target="_blank">{post.link}</a>
+        <a href={post.link}>{post.link}</a>
       </p>
     </div>
 

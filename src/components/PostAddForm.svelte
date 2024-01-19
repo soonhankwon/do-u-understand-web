@@ -36,7 +36,7 @@
 <div class="do-u-understand-add-content-box">
   <div class="content-box-header">
     <div class="flex">
-      <p>지금 여러분의 생각을 적어주세요.</p>
+      <p>포스트를 작성해주세요.</p>
     </div>
   </div>
   <div class="content-box-main">
@@ -44,7 +44,7 @@
       id="title"
       rows="1"
       class="do-u-understand-content-textarea"
-      placeholder="제목을 입력해 주세요."
+      placeholder="제목을 입력해주세요."
       bind:value={values.formTitle}
     ></textarea>
   </div>
@@ -53,7 +53,7 @@
       id="content"
       rows="5"
       class="do-u-understand-content-textarea"
-      placeholder="내용을 입력해 주세요."
+      placeholder="내용을 입력해주세요."
       bind:value={values.formContent}
     ></textarea>
   </div>
@@ -62,7 +62,7 @@
       id="link"
       rows="1"
       class="do-u-understand-content-textarea"
-      placeholder="링크를 입력해 주세요."
+      placeholder="링크를 입력해주세요."
       bind:value={values.formLink}
     ></textarea>
   </div>
