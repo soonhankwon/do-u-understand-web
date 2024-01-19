@@ -1,6 +1,7 @@
 <script>
   export let post;
   import { posts } from "../stores";
+  import dateView from "../utils/date";
 
   let postValue = {
     id: post.id,
@@ -25,7 +26,7 @@
   <div class="content-box-header">
     <div class="content-box-header-inner-left">
       <p class="p-user">{postValue.userEmail}</p>
-      <p class="p-date">{postValue.createdAt}</p>
+      <p class="p-date">{dateView(postValue.createdAt)}</p>
     </div>
   </div>
   <div class="content-box-main">
