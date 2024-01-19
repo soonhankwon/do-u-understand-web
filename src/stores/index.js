@@ -154,9 +154,9 @@ function setPosts() {
     const access_token = get(auth).Authorization;
     try {
       const updateData = {
-        title: post.content,
+        title: post.title,
         content: post.content,
-        link: post.content,
+        link: post.link,
       };
 
       const options = {

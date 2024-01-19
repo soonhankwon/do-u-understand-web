@@ -6,7 +6,9 @@
     id: post.id,
     userEmail: post.userEmail,
     createdAt: post.createdAt,
+    title: post.content,
     content: post.content,
+    link: post.link,
   };
 
   const onCloseEditModePost = () => {
@@ -26,14 +28,31 @@
       <p class="p-date">{postValue.createdAt}</p>
     </div>
   </div>
-
   <div class="content-box-main">
     <textarea
-      id="message"
+      id="title"
+      rows="1"
+      class="do-u-understand-content-textarea"
+      placeholder="제목을 입력해주세요."
+      bind:value={postValue.title}
+    ></textarea>
+  </div>
+  <div class="content-box-main">
+    <textarea
+      id="content"
       rows="5"
       class="do-u-understand-content-textarea"
-      placeholder="내용을 입력해 주세요."
+      placeholder="내용을 입력해주세요."
       bind:value={postValue.content}
+    ></textarea>
+  </div>
+  <div class="content-box-main">
+    <textarea
+      id="link"
+      rows="1"
+      class="do-u-understand-content-textarea"
+      placeholder="링크를 입력해주세요."
+      bind:value={postValue.link}
     ></textarea>
   </div>
 
