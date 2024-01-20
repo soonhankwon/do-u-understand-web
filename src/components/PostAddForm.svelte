@@ -1,6 +1,7 @@
 <script>
   import { posts } from "../stores";
   import { contentValidate, extractErrors } from "../utils/validates";
+  import Tags from "svelte-tags-input";
 
   let errors = {};
 
@@ -10,13 +11,17 @@
     formLink: "",
   };
 
+  let tags = [];
+  const autoCompleteList = ["java", "spring"];
+
   const onAddPost = async () => {
     try {
       await contentValidate.validate(values, { abortEarly: false });
       await posts.addPost(
         values.formTitle,
         values.formContent,
-        values.formLink
+        values.formLink,
+        tags
       );
     } catch (error) {
       errors = extractErrors(error);
@@ -29,6 +34,7 @@
     values.formTitle = "";
     values.formContent = "";
     values.formLink = "";
+    tags = [];
   };
 </script>
 
@@ -66,6 +72,28 @@
       bind:value={values.formLink}
     ></textarea>
   </div>
+  <Tags
+    bind:tags
+    addKeys={[13]}
+    maxTags={3}
+    allowPaste={true}
+    allowDrop={true}
+    splitWith={"/"}
+    onlyUnique={true}
+    removeKeys={[27]}
+    placeholder={"태그를 입력해주세요."}
+    autoComplete={autoCompleteList}
+    name={"tags-input"}
+    id={"tags-input"}
+    allowBlur={true}
+    disable={false}
+    readonly={false}
+    minChars={3}
+    onlyAutocomplete={false}
+    labelText="Tags"
+    labelShow
+    onTagClick={(tag) => console.log(tag)}
+  />
   <div class="content-box-bottom">
     <div class="button-box">
       <button class="button-base" on:click={onAddPost}>입력</button>

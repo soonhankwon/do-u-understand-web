@@ -108,6 +108,11 @@
         <a href={post.link}>{post.link}</a>
       </p>
     </div>
+    <div class="content-box-main">
+      {#each post.tags as tag}
+        <p class="whitespace-pre-line">{tag}</p>
+      {/each}
+    </div>
 
     <div class="content-box-bottom">
       <div class="button-box-inner-left">
