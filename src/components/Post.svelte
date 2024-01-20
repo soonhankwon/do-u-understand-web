@@ -4,6 +4,10 @@
   import PostEditForm from "./PostEditForm.svelte";
   import { router } from "tinro";
   import dateView from "../utils/date";
+  import Tag from "./Tag.svelte";
+
+  let tags = post.tags;
+  let isReadOnly = true;
 
   let isViewMenu = false;
 
@@ -109,9 +113,10 @@
       </p>
     </div>
     <div class="content-box-main">
-      {#each post.tags as tag}
-        <p class="whitespace-pre-line">{tag}</p>
-      {/each}
+      <Tag {tags} {isReadOnly} />
+      <!-- {#each post.tags as tag}
+        <p class="content-tag">{tag}</p>
+      {/each} -->
     </div>
 
     <div class="content-box-bottom">
