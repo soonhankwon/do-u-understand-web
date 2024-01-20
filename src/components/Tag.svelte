@@ -38,7 +38,7 @@
     allowDrop={true}
     splitWith={"/"}
     onlyUnique={true}
-    removeKeys={[27]}
+    removeKeys={[8]}
     placeholder={"태그를 입력해주세요."}
     autoComplete={autoCompleteList}
     name={"tags-input"}
@@ -48,6 +48,5 @@
     readonly={false}
     minChars={3}
     onlyAutocomplete={false}
-    onTagClick={(tag) => console.log(tag)}
   />
 {/if}

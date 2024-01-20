@@ -2,6 +2,10 @@
   export let post;
   import { posts } from "../stores";
   import dateView from "../utils/date";
+  import Tag from "./Tag.svelte";
+
+  let isReadOnly = false;
+  let tags = post.tags;
 
   let postValue = {
     id: post.id,
@@ -10,6 +14,7 @@
     title: post.content,
     content: post.content,
     link: post.link,
+    tags: post.tags,
   };
 
   const onCloseEditModePost = () => {
@@ -55,6 +60,9 @@
       placeholder="링크를 입력해주세요."
       bind:value={postValue.link}
     ></textarea>
+  </div>
+  <div class="do-u-understand-content-textarea">
+    <Tag {tags} {isReadOnly} />
   </div>
 
   <div class="content-box-bottom">
