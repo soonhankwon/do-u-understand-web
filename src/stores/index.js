@@ -104,7 +104,7 @@ function setPosts() {
           title: title,
           content: content,
           link: link,
-          categoriesName: tags,
+          categoryNames: tags,
         },
         access_token: access_token,
       };
