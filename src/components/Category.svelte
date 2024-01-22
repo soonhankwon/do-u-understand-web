@@ -18,11 +18,9 @@
     onlyUnique={true}
     removeKeys={[27]}
     placeholder={""}
-    autoComplete={autoCompleteList}
     name={"tags-input"}
     id={"tags-input"}
     allowBlur={true}
-    disable={false}
     readonly={true}
     minChars={3}
     onlyAutocomplete={false}
