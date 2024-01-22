@@ -17,5 +17,7 @@
 </script>
 
 <div class="main-container">
-  <Router />
+  {#await auth.refresh() then}
+    <Router />
+  {/await}
 </div>
