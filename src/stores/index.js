@@ -503,7 +503,7 @@ function setAuth() {
     }
   };
 
-  const register = async (email, password) => {
+  const register = async (email, password, notification) => {
     try {
       const options = {
         path: "/users",
@@ -511,7 +511,7 @@ function setAuth() {
           email: email,
           password: password,
           code: "1",
-          isAllowedNotification: false,
+          isAllowedNotification: notification,
         },
       };
 

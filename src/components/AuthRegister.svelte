@@ -9,12 +9,17 @@
     formPassword: "",
     formPasswordConfirm: "",
     formEmailAuthCode: "",
+    formNotification: true,
   };
 
   const onRegister = async () => {
     try {
       await registerValidate.validate(values, { abortEarly: false });
-      await auth.register(values.formEmail, values.formPassword);
+      await auth.register(
+        values.formEmail,
+        values.formPassword,
+        values.formNotification
+      );
     } catch (error) {
       errors = extractErrors(error);
       if (errors.formEmail) alert(errors.formEmail);
@@ -91,6 +96,14 @@
       <label for="floating_password_confirm" class="auth-input-label"
         >비밀번호 확인</label
       >
+    </div>
+    <div class="auth-input-box">
+      <form>
+        <label>
+          <input type="checkbox" bind:checked={values.formNotification} />
+          이메일 수신여부
+        </label>
+      </form>
     </div>
   </div>
   <div class="content-box-bottom">
