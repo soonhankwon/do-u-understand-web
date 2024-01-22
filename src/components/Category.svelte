@@ -4,7 +4,7 @@
   export let tags;
   export let isReadOnly;
 
-  const autoCompleteList = ["java", "spring"];
+  const autoCompleteList = ["java", "spring", "jpa"];
 </script>
 
 {#if isReadOnly}

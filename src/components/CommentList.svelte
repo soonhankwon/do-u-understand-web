@@ -50,6 +50,10 @@
 
     <div class="comment-box-main">
       <p class="whitespace-pre-line">{$postContent.content}</p>
+      <p class="whitespace-pre-line">
+        <a href={$postContent.link}>Link:{$postContent.link}</a>
+      </p>
+      <p class="whitespace-pre-line">Category: {$postContent.categoryName}</p>
       <div class="inner-button-box">
         <button class="button-base" on:click={goPosts}>글 목록 보기</button>
       </div>

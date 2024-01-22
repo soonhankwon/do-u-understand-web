@@ -158,6 +158,7 @@ function setPosts() {
         title: post.title,
         content: post.content,
         link: post.link,
+        categoryName: post.categoryName,
       };
 
       const options = {

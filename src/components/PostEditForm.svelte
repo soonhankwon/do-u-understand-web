@@ -2,10 +2,6 @@
   export let post;
   import { posts } from "../stores";
   import dateView from "../utils/date";
-  import Category from "./Category.svelte";
-
-  let isReadOnly = false;
-  let tags = post.categoryName;
 
   let postValue = {
     id: post.id,
@@ -14,7 +10,7 @@
     title: post.content,
     content: post.content,
     link: post.link,
-    tags: post.categoryName,
+    categoryName: post.categoryName,
   };
 
   const onCloseEditModePost = () => {
@@ -62,7 +58,13 @@
     ></textarea>
   </div>
   <div class="do-u-understand-content-textarea">
-    <Category {tags} {isReadOnly} />
+    <textarea
+      id="link"
+      rows="1"
+      class="do-u-understand-content-textarea"
+      placeholder="카테고리를 입력해주세요."
+      bind:value={postValue.categoryName}
+    ></textarea>
   </div>
 
   <div class="content-box-bottom">
