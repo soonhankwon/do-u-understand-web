@@ -1,5 +1,5 @@
 import { writable, get, derived } from "svelte/store";
-import { getApi, putApi, delApi, postApi } from "../service/api";
+import { getApi, putApi, delApi, postApi, patchApi } from "../service/api";
 import { router } from "tinro";
 import { ALL, SUBSCRIBE, MY } from "../utils/constant";
 
@@ -523,6 +523,44 @@ function setAuth() {
     }
   };
 
+  const updatePassword = async (password, code) => {
+    const access_token = get(auth).Authorization;
+    try {
+      const options = {
+        path: "/users/update",
+        data: {
+          password: password,
+          authCode: code,
+        },
+        access_token: access_token,
+      };
+
+      const result = await putApi(options);
+      alert("비밀번호가 업데이트 되었습니다.");
+      set(result);
+      isRefresh.set(true);
+      router.goto("/login");
+    } catch (error) {
+      alert("오류가 발생했습니다. 다시 시도해 주세요.");
+    }
+  };
+
+  const deleteUser = async (code) => {
+    const access_token = get(auth).Authorization;
+    try {
+      const options = {
+        path: `/users/delete?code=${code}`,
+        access_token: access_token,
+      };
+
+      await patchApi(options);
+      alert("정상적으로 요청이 진행되었습니다.");
+      router.goto("/");
+    } catch (error) {
+      alert("오류가 발생했습니다. 다시 시도해 주세요.");
+    }
+  };
+
   return {
     subscribe,
     refresh,
@@ -531,6 +569,8 @@ function setAuth() {
     resetUserInfo,
     register,
     sendAuthEmail,
+    updatePassword,
+    deleteUser,
   };
 }
 

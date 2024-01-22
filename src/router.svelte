@@ -6,9 +6,11 @@
   import Login from "./pages/Login.svelte";
   import Register from "./pages/Register.svelte";
   import NotFound from "./pages/notFound.svelte";
+  import UserInfo from "./pages/UserInfo.svelte";
 </script>
 
 <Route path="/" redirect="/posts/all" />
+<Route path="/edit"><UserInfo /></Route>
 
 <Route path="/posts/*">
   <Route path="/all/*"><Posts /></Route>

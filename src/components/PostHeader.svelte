@@ -5,6 +5,7 @@
 
   const goLogin = () => router.goto("/login");
   const onLogout = () => auth.logout();
+  const onEditUserInfo = () => router.goto("/edit");
 
   const onChangeMode = (mode) => {
     // if ($postsMode !== mode) postsMode.changeMode(mode);
@@ -40,6 +41,9 @@
 
   <!--로그인 -->
   {#if $isLogin}
+    <button href="#" class="text-white" on:click={onEditUserInfo}>
+      <p>{$auth.email}</p>
+    </button>
     <button href="#" class="text-white" on:click={onLogout}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
