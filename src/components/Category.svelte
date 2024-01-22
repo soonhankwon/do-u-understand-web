@@ -11,7 +11,7 @@
   <Tags
     bind:tags
     addKeys={[13]}
-    maxTags={3}
+    maxTags={1}
     allowPaste={true}
     allowDrop={true}
     splitWith={"/"}
@@ -26,20 +26,20 @@
     readonly={true}
     minChars={3}
     onlyAutocomplete={false}
-    labelText="Tags"
+    labelText="Category:"
     labelShow
   />
 {:else}
   <Tags
     bind:tags
     addKeys={[13]}
-    maxTags={3}
+    maxTags={1}
     allowPaste={true}
     allowDrop={true}
     splitWith={"/"}
     onlyUnique={true}
     removeKeys={[8]}
-    placeholder={"태그를 입력해주세요."}
+    placeholder={"카테고리를 입력해주세요."}
     autoComplete={autoCompleteList}
     name={"tags-input"}
     id={"tags-input"}

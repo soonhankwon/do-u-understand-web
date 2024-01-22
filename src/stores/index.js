@@ -104,7 +104,7 @@ function setPosts() {
           title: title,
           content: content,
           link: link,
-          tags: tags,
+          categoriesName: tags,
         },
         access_token: access_token,
       };
@@ -336,6 +336,7 @@ function setPostContent() {
     createdAt: "",
     commentCount: 0,
     likeCount: 0,
+    categoryName: "",
     likeUsers: [],
   };
 

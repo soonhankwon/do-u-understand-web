@@ -2,10 +2,10 @@
   export let post;
   import { posts } from "../stores";
   import dateView from "../utils/date";
-  import Tag from "./Tag.svelte";
+  import Category from "./Category.svelte";
 
   let isReadOnly = false;
-  let tags = post.tags;
+  let tags = post.categoryName;
 
   let postValue = {
     id: post.id,
@@ -14,7 +14,7 @@
     title: post.content,
     content: post.content,
     link: post.link,
-    tags: post.tags,
+    tags: post.categoryName,
   };
 
   const onCloseEditModePost = () => {
@@ -62,7 +62,7 @@
     ></textarea>
   </div>
   <div class="do-u-understand-content-textarea">
-    <Tag {tags} {isReadOnly} />
+    <Category {tags} {isReadOnly} />
   </div>
 
   <div class="content-box-bottom">

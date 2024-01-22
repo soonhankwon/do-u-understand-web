@@ -1,7 +1,7 @@
 <script>
   import { posts } from "../stores";
   import { contentValidate, extractErrors } from "../utils/validates";
-  import Tag from "./Tag.svelte";
+  import Category from "./Category.svelte";
 
   let errors = {};
   let isReadOnly = false;
@@ -73,7 +73,7 @@
     ></textarea>
   </div>
   <div class="do-u-understand-content-textarea">
-    <Tag {tags} {isReadOnly} />
+    <Category {tags} {isReadOnly} />
   </div>
   <div class="content-box-bottom">
     <div class="button-box">
