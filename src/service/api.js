@@ -6,7 +6,7 @@ const send = async ({
   data = {},
   access_token = "",
 } = {}) => {
-  const commonUrl = "http://3.36.80.13/api/v1";
+  const commonUrl = "https://soonable.shop/api/v1";
   const url = commonUrl + path;
 
   const headers = {
