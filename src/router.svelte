@@ -10,7 +10,6 @@
 </script>
 
 <Route path="/" redirect="/posts/all" />
-<Route path="/*" redirect="/posts/all" />
 {#if $isLogin}
   <Route path="/userInfo"><UserInfo /></Route>
 {:else}
