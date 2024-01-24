@@ -410,7 +410,7 @@ function setComments() {
         path: "/comments",
         data: {
           commentId: commentId,
-          postId: postId,
+          // postId: postId,
         },
         access_token: access_token,
       };
@@ -519,7 +519,7 @@ function setAuth() {
       alert("가입이 완료되었습니다.");
       router.goto("/login");
     } catch (error) {
-      alert("오류가 발생했습니다. 다시 시도해 주세요.");
+      alert(error.response.data.msg);
     }
   };
 
