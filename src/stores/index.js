@@ -95,7 +95,7 @@ function setPosts() {
     postPageLock.set(false);
   };
 
-  const addPost = async (title, content, link, tags) => {
+  const addPost = async (title, content, link, tag) => {
     const access_token = get(auth).Authorization;
     try {
       const options = {
@@ -104,7 +104,7 @@ function setPosts() {
           title: title,
           content: content,
           link: link,
-          categoryNames: tags,
+          categoryName: tag,
         },
         access_token: access_token,
       };

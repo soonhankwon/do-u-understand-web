@@ -15,15 +15,23 @@
   let tags = [];
 
   const onAddPost = async () => {
+    let tag = "";
     try {
+      if (tags[0] === undefined) {
+        tag = "no_category";
+      } else {
+        tag = tags[0];
+      }
       await contentValidate.validate(values, { abortEarly: false });
       await posts.addPost(
         values.formTitle,
         values.formContent,
         values.formLink,
-        tags
+        tag
       );
+      onCancelAddPost();
     } catch (error) {
+      alert(error);
       errors = extractErrors(error);
       if (errors.formContent) alert(errors.formContent);
       //   alert(error);
@@ -34,7 +42,6 @@
     values.formTitle = "";
     values.formContent = "";
     values.formLink = "";
-    tags = [];
   };
 </script>
 
