@@ -18,6 +18,9 @@
   };
 
   const onUpdatePost = () => {
+    if (postValue.categoryName === undefined) {
+      postValue.categoryName = "no_category";
+    }
     posts.updatePost(postValue);
   };
 </script>
