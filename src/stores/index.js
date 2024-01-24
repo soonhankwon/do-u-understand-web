@@ -503,6 +503,21 @@ function setAuth() {
     }
   };
 
+  const sendPasswordRefreshMail = async (email) => {
+    try {
+      const options = {
+        path: "/auth/password",
+        data: {
+          email: email,
+        },
+      };
+      const response = await putApi(options);
+      alert(email + "로 재설정된 비밀번호가 발송되었습니다.");
+    } catch (error) {
+      alert(error.response.data.msg);
+    }
+  };
+
   const register = async (email, password, notification, authCode) => {
     try {
       const options = {
@@ -523,14 +538,13 @@ function setAuth() {
     }
   };
 
-  const updatePassword = async (password, code) => {
+  const updatePassword = async (password) => {
     const access_token = get(auth).Authorization;
     try {
       const options = {
         path: "/users/update",
         data: {
           password: password,
-          authCode: code,
         },
         access_token: access_token,
       };
@@ -571,6 +585,7 @@ function setAuth() {
     sendAuthEmail,
     updatePassword,
     deleteUser,
+    sendPasswordRefreshMail,
   };
 }
 

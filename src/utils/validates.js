@@ -10,6 +10,14 @@ export const contentValidate = yup.object().shape({
   formContent: yup.string().required("내용을 입력해주세요.").label("내용"),
 });
 
+export const emailValidate = yup.object().shape({
+  formEmail: yup
+    .string()
+    .required("이메일을 입력해주세요.")
+    .email("이메일 형식이 잘못되었습니다.")
+    .label("이메일"),
+});
+
 export const loginValidate = yup.object().shape({
   formEmail: yup
     .string()
@@ -64,8 +72,4 @@ export const updatePasswordValidate = yup.object().shape({
       "패스워드와 패스워드확인이 일치하지 않습니다."
     )
     .label("패스워드 확인"),
-  formCode: yup
-    .string()
-    .required("인증코드를 입력해주세요.")
-    .label("인증코드 확인"),
 });

@@ -1,6 +1,10 @@
 <script>
   import { auth } from "../stores";
-  import { loginValidate, extractErrors } from "../utils/validates";
+  import {
+    loginValidate,
+    emailValidate,
+    extractErrors,
+  } from "../utils/validates";
 
   let errors = {};
 
@@ -24,6 +28,16 @@
       if (errors.formEmail) alert(errors.formEmail);
       if (errors.formPassword) alert(errors.formPassword);
       //   alert("인증이 되지 않았습니다. 다시 시도해 주세요.");
+    }
+  };
+
+  const onRefreshPassword = async () => {
+    try {
+      await emailValidate.validate(values, { abortEarly: false });
+      await auth.sendPasswordRefreshMail(values.formEmail);
+    } catch (error) {
+      errors = extractErrors(error);
+      if (errors.formEmail) alert(errors.formEmail);
     }
   };
 </script>
@@ -59,6 +73,19 @@
   <div class="content-box-bottom">
     <div class="button-box">
       <button class="button-base" on:click={onLogin}>로그인</button>
+    </div>
+  </div>
+  <div class="content-box-bottom">
+    <div>
+      <p>
+        비밀번호를 분실하신 경우 위 입력칸에 이메일 입력후 비밀번호 재설정
+        버튼을 클릭해주세요
+      </p>
+    </div>
+    <div class="button-box">
+      <button class="button-base" on:click={onRefreshPassword}
+        >비밀번호 재설정</button
+      >
     </div>
   </div>
 </div>

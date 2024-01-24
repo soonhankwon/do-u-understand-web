@@ -21,13 +21,12 @@
   const onUpdatePassword = async () => {
     try {
       await updatePasswordValidate.validate(values, { abortEarly: false });
-      await auth.updatePassword(values.formPassword, values.formCode);
+      await auth.updatePassword(values.formPassword);
       resetValues();
     } catch (error) {
       errors = extractErrors(error);
       if (errors.formPassword) alert(errors.formPassword);
       if (errors.formPasswordConfirm) alert(errors.formPasswordConfirm);
-      if (errors.formCode) alert(errors.formCode);
     }
   };
 
@@ -50,6 +49,8 @@
 <div class="auth-content-box">
   <div class="auth-box-main">
     <p>Email: {$auth.email}</p>
+    <br />
+    <p>비밀번호 재설정시 아래 필드 입력 후 비밀번호를 수정해주세요.</p>
     <div class="auth-input-box">
       <input
         type="password"
@@ -89,7 +90,7 @@
         class:wrong={errors.formCode}
       />
       <label for="floating_auth_code_edit" class="auth-input-label"
-        >패스워드 변경 또는 탈퇴시 이메일 인증 코드를 입력해주세요.</label
+        >회원 탈퇴시 이메일 인증 코드를 입력해주세요.</label
       >
     </div>
     <div class="button-box">
