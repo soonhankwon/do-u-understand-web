@@ -22,9 +22,8 @@
     try {
       await updatePasswordValidate.validate(values, { abortEarly: false });
       await auth.updatePassword(values.formPassword, values.formCode);
+      resetValues();
     } catch (error) {
-      console.log(error);
-      alert("실패했습니다. 디시 시도해주세요.");
       errors = extractErrors(error);
       if (errors.formPassword) alert(errors.formPassword);
       if (errors.formPasswordConfirm) alert(errors.formPasswordConfirm);
@@ -35,9 +34,16 @@
   const onDeleteUser = async () => {
     try {
       await auth.deleteUser(values.formCode);
+      resetValues();
     } catch (error) {
       alert("회원 탈퇴에 실패했습니다. 디시 시도해주세요.");
     }
+  };
+
+  const resetValues = async () => {
+    values.formPassword = "";
+    values.formPasswordConfirm = "";
+    values.formCode = "";
   };
 </script>
 

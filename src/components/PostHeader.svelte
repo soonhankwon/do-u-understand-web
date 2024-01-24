@@ -5,7 +5,7 @@
 
   const goLogin = () => router.goto("/login");
   const onLogout = () => auth.logout();
-  const onEditUserInfo = () => router.goto("/edit");
+  const onEditUserInfo = () => router.goto("/userInfo");
 
   const onChangeMode = (mode) => {
     // if ($postsMode !== mode) postsMode.changeMode(mode);

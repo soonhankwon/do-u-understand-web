@@ -10,7 +10,7 @@
 </script>
 
 <Route path="/" redirect="/posts/all" />
-<Route path="/edit"><UserInfo /></Route>
+<Route path="/userInfo"><UserInfo /></Route>
 
 <Route path="/posts/*">
   <Route path="/all/*"><Posts /></Route>

@@ -469,7 +469,7 @@ function setAuth() {
       isRefresh.set(true);
       router.goto("/posts/all");
     } catch (error) {
-      alert("오류가 발생했습니다. 로그인을 다시 시도해 주세요.");
+      alert(error.response.data.msg);
     }
   };
 

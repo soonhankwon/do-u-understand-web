@@ -27,7 +27,13 @@ export const registerValidate = yup.object().shape({
     .string()
     .required("이메일을 입력해주세요.")
     .email("이메일 형식이 다릅니다."),
-  formPassword: yup.string().required("패스워드를 입력해주세요."),
+  formPassword: yup
+    .string()
+    .matches(
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/,
+      "영문 숫자 특수문자 조합 8자리 이상으로 입력해주세요."
+    )
+    .required("패스워드를 입력해주세요."),
   formPasswordConfirm: yup
     .string()
     .required("패스워드확인을 입력해주세요.")
@@ -39,7 +45,13 @@ export const registerValidate = yup.object().shape({
 });
 
 export const updatePasswordValidate = yup.object().shape({
-  formPassword: yup.string().required("패스워드를 입력해주세요."),
+  formPassword: yup
+    .string()
+    .matches(
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/,
+      "영문 숫자 특수문자 조합 8자리 이상으로 입력해주세요."
+    )
+    .required("패스워드를 입력해주세요."),
   formPasswordConfirm: yup
     .string()
     .required("패스워드확인을 입력해주세요.")
