@@ -503,14 +503,14 @@ function setAuth() {
     }
   };
 
-  const register = async (email, password, notification) => {
+  const register = async (email, password, notification, authCode) => {
     try {
       const options = {
         path: "/users",
         data: {
           email: email,
           password: password,
-          code: "1",
+          code: authCode,
           isAllowedNotification: notification,
         },
       };

@@ -8,7 +8,7 @@
     formEmail: "",
     formPassword: "",
     formPasswordConfirm: "",
-    formEmailAuthCode: "",
+    formCode: "",
     formNotification: true,
   };
 
@@ -18,13 +18,15 @@
       await auth.register(
         values.formEmail,
         values.formPassword,
-        values.formNotification
+        values.formNotification,
+        values.formCode
       );
     } catch (error) {
       errors = extractErrors(error);
       if (errors.formEmail) alert(errors.formEmail);
       if (errors.formPassword) alert(errors.formPassword);
       if (errors.formPasswordConfirm) alert(errors.formPasswordConfirm);
+      if (errors.formCode) alert(errors.formCode);
       //   alert("회원가입에 실패했습니다. 다시 시도해 주세요.");
     }
   };
@@ -60,7 +62,8 @@
         id="floating_auth_email"
         class="auth-input-text peer"
         placeholder=" "
-        bind:value={values.formEmailAuthCode}
+        bind:value={values.formCode}
+        class:wrong={errors.formCode}
       />
       <label for="floating_email" class="auth-input-label"
         >이메일 인증 코드</label

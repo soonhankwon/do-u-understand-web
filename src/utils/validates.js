@@ -42,6 +42,10 @@ export const registerValidate = yup.object().shape({
       "패스워드와 패스워드확인이 일치하지 않습니다."
     )
     .label("패스워드 확인"),
+  formCode: yup
+    .string()
+    .required("인증코드를 입력해주세요.")
+    .label("인증코드 확인"),
 });
 
 export const updatePasswordValidate = yup.object().shape({
