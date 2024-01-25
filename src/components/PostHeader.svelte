@@ -69,7 +69,7 @@
       <button title="MyPost" class="main-menu mr-6 main-menu-blocked"
         ><Icon icon="gg:list" color="white" width="24" /></button
       >
-      <button title="Create" class="main-menu main-menu-blocked"
+      <button title="Create" class="main-menu mr-6 main-menu-blocked"
         ><Icon icon="ic:baseline-plus" color="white" width="24" /></button
       >
     {/if}

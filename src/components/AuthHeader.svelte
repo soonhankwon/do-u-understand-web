@@ -7,7 +7,7 @@
 
 <!-- main-header start -->
 <header class="main-header">
-  <p class="p-main-title">DO-U-UNDERSTAND</p>
+  <p class="p-main-title">SELFnews</p>
   <nav class="main-nav">
     <a
       href="/login"
