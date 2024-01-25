@@ -1,4 +1,5 @@
 <script>
+  import { router } from "tinro";
   import { posts } from "../stores";
   import { contentValidate, extractErrors } from "../utils/validates";
   import Category from "./Category.svelte";
@@ -42,6 +43,7 @@
     values.formTitle = "";
     values.formContent = "";
     values.formLink = "";
+    rou;
   };
 </script>
 
@@ -49,7 +51,7 @@
 <div class="do-u-understand-add-content-box">
   <div class="content-box-header">
     <div class="flex">
-      <p>포스트를 작성해주세요.</p>
+      <p class="font-bold">Create a Post</p>
     </div>
   </div>
   <div class="content-box-main">
@@ -79,7 +81,7 @@
       bind:value={values.formLink}
     ></textarea>
   </div>
-  <div class="do-u-understand-content-textarea">
+  <div class="p-4 bg-white shadow-md rounded-md">
     <Category {tags} {isReadOnly} />
   </div>
   <div class="content-box-bottom">

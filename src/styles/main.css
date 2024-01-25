@@ -563,14 +563,6 @@ html {
   flex-direction: column;
 }
 
-@media (max-width: 767px) {
-  .main-container {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 56rem;
-  }
-}
-
 .do-u-understand-main {
   /* @apply lg:max-w-4xl mx-5 lg:mx-auto flex flex-col */
   height: 100vh;
@@ -629,11 +621,9 @@ html {
   padding-right: 1.25rem;
 }
 
-@media (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .main-header {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 56rem;
+    flex-direction: column; /* 또는 필요에 따라 다른 스타일 변경 */
   }
 }
 
@@ -655,14 +645,6 @@ html {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-@media (min-width: 1024px) {
-  .do-u-understand-content-box {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 56rem;
-  }
 }
 
 .do-u-understand-add-content-box {

@@ -1,7 +1,7 @@
 <script>
   import { router } from "tinro";
   import { auth, isLogin, postsMode } from "../stores";
-  import { ALL, SUBSCRIBE, MY } from "../utils/constant";
+  import { ALL, SUBSCRIBE, MY, WRITE } from "../utils/constant";
 
   const goLogin = () => router.goto("/login");
   const onLogout = () => auth.logout();
@@ -29,13 +29,19 @@
         on:click={() => onChangeMode(SUBSCRIBE)}>SUBSCRIBE</button
       >
       <button
-        class="main-menu"
+        class="main-menu mr-6"
         class:main-menu-selected={$postsMode === MY}
         on:click={() => onChangeMode(MY)}>MY POST</button
       >
+      <button
+        class="main-menu"
+        class:main-menu-selected={$postsMode === WRITE}
+        on:click={() => onChangeMode(WRITE)}>WRITE</button
+      >
     {:else}
       <button class="main-menu mr-6 main-menu-blocked">SUBSCRIBE</button>
-      <button class="main-menu main-menu-blocked">MY POST</button>
+      <button class="main-menu mr-6 main-menu-blocked">MY POST</button>
+      <button class="main-menu main-menu-blocked">WRITE</button>
     {/if}
   </nav>
 

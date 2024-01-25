@@ -21,9 +21,11 @@
   {#if $isLogin}
     <Route path="/my/*"><Posts /></Route>
     <Route path="/subscribe/*"><Posts /></Route>
+    <Route path="/write/*"><Posts /></Route>
   {:else}
     <Route path="/my/*" redirect="/posts/all" />
     <Route path="/subscribe/*" redirect="/posts/all"><Posts /></Route>
+    <Route path="/write/*" redirect="/posts/all"><Posts /></Route>
   {/if}
 </Route>
 <Route path="/login"><Login /></Route>

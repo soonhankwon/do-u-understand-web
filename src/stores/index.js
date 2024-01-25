@@ -1,7 +1,7 @@
 import { writable, get, derived } from "svelte/store";
 import { getApi, putApi, delApi, postApi, patchApi } from "../service/api";
 import { router } from "tinro";
-import { ALL, SUBSCRIBE, MY } from "../utils/constant";
+import { ALL, SUBSCRIBE, MY, WRITE } from "../utils/constant";
 
 function setCurrentPostsPage() {
   const { subscribe, update, set } = writable(0);
@@ -593,6 +593,11 @@ function setPostsMode() {
   const { subscribe, update, set } = writable(ALL);
 
   const changeMode = async (mode) => {
+    if (mode === WRITE) {
+      set(mode);
+      posts.resetPosts();
+      return;
+    }
     set(mode);
     posts.resetPosts();
     await posts.fetchPosts();

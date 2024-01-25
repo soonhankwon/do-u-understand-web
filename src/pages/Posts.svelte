@@ -5,12 +5,12 @@
   import { isLogin, postsMode } from "../stores";
   import Comments from "./Comments.svelte";
   import { Route } from "tinro";
-  import { ALL } from "../utils/constant";
+  import { WRITE } from "../utils/constant";
 </script>
 
 <PostHeader />
 <main class="do-u-understand-main">
-  {#if $isLogin && $postsMode !== ALL}
+  {#if $isLogin && $postsMode === WRITE}
     <PostAddForm />
   {/if}
   <PostList />

@@ -115,7 +115,7 @@
         <a href={post.link}>{post.link}</a>
       </p>
     </div>
-    <div class="content-box-main">
+    <div class="p-4 bg-white shadow-md rounded-md">
       <Category {tags} {isReadOnly} />
       <!-- {#each post.tags as tag}
         <p class="content-tag">{tag}</p>
