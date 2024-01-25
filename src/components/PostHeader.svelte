@@ -1,6 +1,6 @@
 <script>
   import { router } from "tinro";
-  import { auth, isLogin, postsMode } from "../stores";
+  import { auth, isLogin, postsMode, posts } from "../stores";
   import { ALL, SUBSCRIBE, MY, WRITE } from "../utils/constant";
   import Icon from "@iconify/svelte";
 
@@ -15,11 +15,34 @@
     // if ($postsMode !== mode) postsMode.changeMode(mode);
     if ($postsMode !== mode) router.goto(`/posts/${mode}`);
   };
+
+  let query = "";
+
+  const onSearch = () => {
+    posts.fetchPosts(query);
+    offSearch();
+  };
+  const offSearch = () => {
+    query = "";
+  };
 </script>
 
 <!-- start header -->
 <header class="main-header">
   <p class="p-main-title">SELFnews</p>
+  <div>
+    <button title="Search" class="main-menu" on:click={onSearch}
+      ><Icon icon="material-symbols:search" color="white" width="16" /></button
+    >
+    <input
+      type="text"
+      id="search-input"
+      class="main-menu-search"
+      placeholder=" Search by category"
+      bind:value={query}
+    />
+  </div>
+
   <nav class="main-nav">
     <button
       title="Notification"

@@ -29,22 +29,26 @@ function setPosts() {
 
   const { subscribe, update, set } = writable({ ...initValues });
 
-  const fetchPosts = async () => {
+  const fetchPosts = async (query) => {
     loadingPost.turnOnLoading();
     const currentPage = get(currentPostsPage);
     // let path = `/posts?pageNumber=${currentPage}`;
     let path = "";
     const mode = get(postsMode);
 
+    if (query === undefined) {
+      query = "";
+    }
+
     switch (mode) {
       case ALL:
         path = `/posts?pageNumber=${currentPage}&mode=${mode}`;
         break;
       case SUBSCRIBE:
-        path = `/subscribe?pageNumber=${currentPage}`;
+        path = `/subscribe?pageNumber=${currentPage}&query=${query}`;
         break;
       case MY:
-        path = `/posts?pageNumber=${currentPage}&mode=${mode}`;
+        path = `/posts?pageNumber=${currentPage}&mode=${mode}&query=${query}`;
         break;
       default:
         path = `/posts/${currentPage}`;
