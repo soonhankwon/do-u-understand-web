@@ -30,18 +30,24 @@
 <!-- start header -->
 <header class="main-header">
   <p class="p-main-title">SELFnews</p>
-  <div>
-    <button title="Search" class="main-menu" on:click={onSearch}
-      ><Icon icon="material-symbols:search" color="white" width="16" /></button
-    >
-    <input
-      type="text"
-      id="search-input"
-      class="main-menu-search"
-      placeholder=" Search by category"
-      bind:value={query}
-    />
-  </div>
+  {#if $postsMode === SUBSCRIBE || $postsMode === MY}
+    <div>
+      <button title="Search" class="main-menu" on:click={onSearch}
+        ><Icon
+          icon="material-symbols:search"
+          color="white"
+          width="16"
+        /></button
+      >
+      <input
+        type="text"
+        id="search-input"
+        class="main-menu-search"
+        placeholder=" Search by category"
+        bind:value={query}
+      />
+    </div>
+  {/if}
 
   <nav class="main-nav">
     <button
