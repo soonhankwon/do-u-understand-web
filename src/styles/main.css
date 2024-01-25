@@ -621,7 +621,7 @@ html {
   padding-right: 1.25rem;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 599px) {
   .main-header {
     flex-direction: column; /* 또는 필요에 따라 다른 스타일 변경 */
   }
