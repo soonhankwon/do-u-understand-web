@@ -104,7 +104,7 @@
       </div>
     </div>
 
-    <div class="content-box-main">
+    <div class="content-box-main-title">
       <p class="whitespace-pre-line">{post.title}</p>
     </div>
     <div class="content-box-main">

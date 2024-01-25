@@ -728,6 +728,17 @@ html {
   padding: 1rem;
 }
 
+.content-box-main-title {
+  font-weight: bold;
+  font-size: large;
+  display: flex;
+  width: 100%;
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity));
+  padding: 1rem;
+}
+
 .content-box-main-link {
   display: flex;
   width: 100%;

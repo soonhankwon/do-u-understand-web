@@ -43,7 +43,7 @@
     values.formTitle = "";
     values.formContent = "";
     values.formLink = "";
-    rou;
+    router.goto("/posts/my");
   };
 </script>
 
@@ -54,7 +54,7 @@
       <p class="font-bold">Create a Post</p>
     </div>
   </div>
-  <div class="content-box-main">
+  <div class="content-box-main-title">
     <textarea
       id="title"
       rows="1"

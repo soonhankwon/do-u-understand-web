@@ -48,9 +48,9 @@
 
 <div class="auth-content-box">
   <div class="auth-box-main">
-    <p>Email: {$auth.email}</p>
+    <p class:auth-box-main-email={$auth.email}>email: {$auth.email}</p>
     <br />
-    <p>비밀번호 재설정시 아래 필드 입력 후 비밀번호를 수정해주세요.</p>
+    <li>비밀번호 재설정시 아래 필드 입력 후 비밀번호를 수정해주세요.</li>
     <div class="auth-input-box">
       <input
         type="password"
@@ -125,5 +125,9 @@
 
   .button-base:hover {
     background-color: #0e83cd;
+  }
+
+  .auth-box-main-email {
+    font-weight: bold;
   }
 </style>

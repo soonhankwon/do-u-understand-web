@@ -38,7 +38,7 @@
       <p class="p-date">{dateView(postValue.createdAt)}</p>
     </div>
   </div>
-  <div class="content-box-main">
+  <div class="content-box-main-title">
     <textarea
       id="title"
       rows="1"
@@ -56,7 +56,7 @@
       bind:value={postValue.content}
     ></textarea>
   </div>
-  <div class="content-box-main">
+  <div class="content-box-main-link">
     <textarea
       id="link"
       rows="1"
