@@ -7,7 +7,7 @@
     id: post.id,
     userEmail: post.userEmail,
     createdAt: post.createdAt,
-    title: post.content,
+    title: post.title,
     content: post.content,
     link: post.link,
     categoryName: post.categoryName,
