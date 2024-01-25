@@ -11,7 +11,7 @@
 
 <PostHeader />
 <main class="do-u-understand-main">
-  {#if $isLogin && $postsMode === ALL}
+  {#if $postsMode === ALL}
     <Notification />
   {/if}
   {#if $isLogin && $postsMode === WRITE}
