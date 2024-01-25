@@ -13,6 +13,10 @@
     formPassword: "",
   };
 
+  let refreshPwdValues = {
+    formRefreshPwdEmail: "",
+  };
+
   const resetValues = () => {
     values.formEmail = "";
     values.formPassword = "";
@@ -33,11 +37,13 @@
 
   const onRefreshPassword = async () => {
     try {
-      await emailValidate.validate(values, { abortEarly: false });
-      await auth.sendPasswordRefreshMail(values.formEmail);
+      await emailValidate.validate(refreshPwdValues, {
+        abortEarly: false,
+      });
+      await auth.sendPasswordRefreshMail(refreshPwdValues.formRefreshPwdEmail);
     } catch (error) {
       errors = extractErrors(error);
-      if (errors.formEmail) alert(errors.formEmail);
+      if (errors.formRefreshPwdEmail) alert(errors.formRefreshPwdEmail);
     }
   };
 </script>
@@ -76,11 +82,19 @@
     </div>
   </div>
   <div class="content-box-bottom">
-    <div>
-      <p>
-        비밀번호를 분실하신 경우 위 입력칸에 이메일 입력후 비밀번호 재설정
-        버튼을 클릭해주세요
-      </p>
+    <div class="auth-input-box">
+      <input
+        type="email"
+        name="floating_refresh_pwd_email"
+        id="floating_refresh_pwd_email"
+        class="auth-input-text peer"
+        placeholder=" "
+        bind:value={refreshPwdValues.formRefreshPwdEmail}
+        class:wrong={errors.formRefreshPwdEmail}
+      />
+      <label for="floating_refresh_pwd_email" class="auth-input-label"
+        >임시 비밀번호를 받을 이메일을 입력해주세요.</label
+      >
     </div>
     <div class="button-box">
       <button class="button-base" on:click={onRefreshPassword}
@@ -95,5 +109,23 @@
 <style>
   .wrong {
     border-bottom: 3px solid red;
+  }
+  .content-box-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+  }
+  .button-box {
+    margin-top: 10px; /* 버튼과 상단 텍스트 간의 간격 조절 */
+  }
+
+  .button-base {
+    padding: 10px 20px;
+    background-color: #2196f3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
   }
 </style>

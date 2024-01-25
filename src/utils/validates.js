@@ -11,7 +11,7 @@ export const contentValidate = yup.object().shape({
 });
 
 export const emailValidate = yup.object().shape({
-  formEmail: yup
+  formRefreshPwdEmail: yup
     .string()
     .required("이메일을 입력해주세요.")
     .email("이메일 형식이 잘못되었습니다.")
