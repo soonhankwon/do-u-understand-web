@@ -54,7 +54,12 @@
         on:click={() => onChangeMode(WRITE)}
         ><Icon icon="ic:baseline-plus" color="white" width="24" /></button
       >
-      <button title="MyInfo" href="#" on:click={onEditUserInfo}>
+      <button
+        title="MyInfo"
+        class="main-menu mr-6"
+        href="#"
+        on:click={onEditUserInfo}
+      >
         <Icon icon="ic:baseline-account-box" color="white" width="24" />
       </button>
     {:else}
@@ -68,17 +73,17 @@
         ><Icon icon="ic:baseline-plus" color="white" width="24" /></button
       >
     {/if}
-  </nav>
 
+    {#if $isLogin}
+      <button title="Logout" href="#" on:click={onLogout}>
+        <Icon icon="material-symbols:logout" color="white" width="24" />
+      </button>
+    {:else}
+      <button title="Login" href="#" on:click={goLogin}>
+        <Icon icon="material-symbols:login" color="white" width="24" />
+      </button>
+    {/if}
+  </nav>
   <!--로그인 -->
-  {#if $isLogin}
-    <button title="Logout" href="#" on:click={onLogout}>
-      <Icon icon="material-symbols:logout" color="white" width="24" />
-    </button>
-  {:else}
-    <button title="Login" href="#" on:click={goLogin}>
-      <Icon icon="material-symbols:login" color="white" width="24" />
-    </button>
-  {/if}
 </header>
 <!-- end header -->
