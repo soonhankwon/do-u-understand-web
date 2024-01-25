@@ -128,4 +128,8 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
+
+  .button-base:hover {
+    background-color: #0e83cd;
+  }
 </style>
