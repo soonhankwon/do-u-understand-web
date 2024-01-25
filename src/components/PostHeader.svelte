@@ -31,7 +31,7 @@
       <button
         class="main-menu mr-6"
         class:main-menu-selected={$postsMode === MY}
-        on:click={() => onChangeMode(MY)}>MY POST</button
+        on:click={() => onChangeMode(MY)}>MYPOST</button
       >
       <button
         class="main-menu"
