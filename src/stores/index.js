@@ -358,7 +358,7 @@ function setPostContent() {
       const getData = await getApi(options);
       set(getData);
     } catch (error) {
-      alert("오류가 발생했습니다. 다시 시도해 주세요.");
+      alert(error.response.data.msg);
     }
   };
 
@@ -382,7 +382,7 @@ function setComments() {
       const getDatas = await getApi(options);
       set(getDatas.comments);
     } catch (error) {
-      alert("오류가 발생했습니다. 다시 시도해 주세요.");
+      alert(error.response.data.msg);
     }
   };
   const addComment = async (postId, commentContent) => {
