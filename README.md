@@ -18,8 +18,8 @@
 ## 배포
 
 - Link: https://do-u-understand-web.vercel.app
-- Back-end Server는 SpringBoot로 구현했습니다.
-- Front-end Github Link: https://github.com/soonhankwon/self-news-api
+- Backend Server는 SpringBoot로 구현했습니다.
+- Backend Github Link: https://github.com/soonhankwon/self-news-api
 
 ## 기술스택
 
