@@ -48,11 +48,18 @@
       </div>
     </div>
 
+    <div class="content-box-main-title">
+      <p class="whitespace-pre-line">{$postContent.title}</p>
+    </div>
     <div class="comment-box-main">
       <p class="whitespace-pre-line">{$postContent.content}</p>
+    </div>
+    <div class="content-box-main-link">
       <p class="whitespace-pre-line">
-        <a href={$postContent.link}>Link:{$postContent.link}</a>
+        <a href={$postContent.link}>{$postContent.link}</a>
       </p>
+    </div>
+    <div class="comment-box-main">
       <p class="whitespace-pre-line">Category: {$postContent.categoryName}</p>
       <div class="inner-button-box">
         <button class="button-base" on:click={goPosts}>글 목록 보기</button>
