@@ -52,8 +52,8 @@
       </li>
       <br />
       <li>
-        SELFnews를 알람 시스템을 통해 자신이 꼭 기억하고 싶은 내용들을 진짜
-        자신의 지식으로 만들어보세요.
+        <span class="highlight-text">SELFnews</span> 알람 시스템을 통해 자신이 꼭
+        기억하고 싶은 내용들을 진짜 자신의 지식으로 만들어보세요.
       </li>
       <br />
       <li>
