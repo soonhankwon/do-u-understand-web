@@ -1,47 +1,42 @@
-# Svelte + Vite
+# SELFnews 프론트엔드 UI
 
-This template should help get you started developing with Svelte in Vite.
+- 자신이 발행한 포스트를 정기적으로 이메일로 받아볼 수 있는 웹 애플리케이션 입니다.
+- SELFnews는 메모앱에서 수 많은 공부 메모를 작성하지만, 정작 리뷰는 귀찮아 공부한 내용을 까먹는 문제를 해결하고자 만든 시스템입니다.
+- SELFnews의 핵심 기능은 2가지 입니다.
+  - 포스트 작성, 발행, 구독 기능
+  - 구독 포스트 정기적 이메일 발송 기능
+- 결론적으로 자신이 등록한 포스트를 주기적인 이메일 알람을 통해 리마인드 시키는 것으로 지식을 까먹지 않도록 도움을 주는 웹 애플리케이션 프론트엔드 UI 입니다.
 
-## Recommended IDE Setup
+## Table Of Contents
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+- [배포](#배포)
+- [기술스택](#기술스택)
+- [아키텍처](#아키텍처)
+- [핵심문제 해결과정 및 전략](#핵심문제-해결과정-및-전략)
+  <br/>
 
-## Need an official Svelte framework?
+## 배포
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+- Link: https://do-u-understand-web.vercel.app
+- Back-end Server는 SpringBoot로 구현했습니다.
+- Front-end Github Link: https://github.com/soonhankwon/self-news-api
 
-## Technical considerations
+## 기술스택
 
-**Why use this over SvelteKit?**
+### 언어 및 라이브러리
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+- javascript
+- svelte.js 4.2.8
+- vite 5.0.8
+- axios 1.6.5
+- dayjs 1.11.10
+- tinro 0.6.12
+- svelte-tags-input 5.0.0
 
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+### DevOps
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+- vercel
 
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
+## 아키텍처
 
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `checkJs` in the JS template?**
-
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
-```
+## 핵심문제 해결과정 및 전략
